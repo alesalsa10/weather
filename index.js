@@ -46,8 +46,6 @@ function req(loc){
         $('.max').find('p').text(`Max temperature: ${max} °F`);
         $('.humidity').find('p').text(`Humidity: ${humidity} %`);
       }
-
-      
     })
     .catch(err => {
       $('.location').find('h2').text('');
@@ -76,3 +74,37 @@ function selectLocation() {
 }
 
 selectLocation();
+
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    const onSuccess = (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      pos = [lat, lng];
+
+      resolve(pos)
+    }
+
+    const onError = () => {
+      console.log('Can\'t get location info');
+      reject();
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  })
+}
+
+function coordToCity(){
+  //then needed because of promise returned on getPosition
+  getPosition().then((position) => {
+    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position[0]}&longitude=${position[1]}&localityLanguage=en`)
+    .then(response => response.json())
+    .then(data => {
+      let city = data['city'];
+      console.log(city);
+      return city;
+    })
+  });
+}
+
+
