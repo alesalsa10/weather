@@ -11,8 +11,8 @@ function chooseUnit(){
     }
   })
 }
-chooseUnit();
-
+/* chooseUnit();
+ */
 function capitalizeString(str){
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -34,16 +34,16 @@ function req(loc){
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
         $('.temp').find('p').text(`Current temperature: ${temp} °C`);
-        $('.min').find('p').text(`Min temperature: ${min} °C`);
-        $('.max').find('p').text(`Max temperature: ${max} °C`);
+        $('.min').find('p').text(`Min. temperature: ${min} °C`);
+        $('.max').find('p').text(`Max. temperature: ${max} °C`);
         $('.humidity').find('p').text(`Humidity: ${humidity} %`);
       } else {
         $('.location').find('h2').text(capitalizeString(loc));
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
         $('.temp').find('p').text(`Current temperature: ${temp} °F`);
-        $('.min').find('p').text(`Min temperature: ${min} °F`);
-        $('.max').find('p').text(`Max temperature: ${max} °F`);
+        $('.min').find('p').text(`Min. temperature: ${min} °F`);
+        $('.max').find('p').text(`Max. temperature: ${max} °F`);
         $('.humidity').find('p').text(`Humidity: ${humidity} %`);
       }
     })
@@ -63,6 +63,7 @@ function req(loc){
     })
 }
 
+/* var location; */
 function selectLocation() {
   var location = "";
   $('.location').on('keydown', function (e) {
@@ -72,39 +73,47 @@ function selectLocation() {
     }
   })
 }
-
-selectLocation();
+/* selectLocation(); */
 
 const getPosition = () => {
   return new Promise((resolve, reject) => {
     const onSuccess = (position) => {
       const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      pos = [lat, lng];
-
+      const lon = position.coords.longitude;
+      pos = [lat, lon];
       resolve(pos)
     }
-
     const onError = () => {
       console.log('Can\'t get location info');
       reject();
     }
-
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   })
 }
 
-function coordToCity(){
-  //then needed because of promise returned on getPosition
-  getPosition().then((position) => {
-    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position[0]}&longitude=${position[1]}&localityLanguage=en`)
+function coordToCity(lat, lon){
+  return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
     .then(response => response.json())
     .then(data => {
-      let city = data['city'];
-      console.log(city);
-      return city;
+      const city = data['city'];
+      return (city);
     })
-  });
 }
+
+async function main2(){
+  let coor = await getPosition();
+  let city = await coordToCity(coor[0], coor[1]);
+  $('.location').val(city);
+  req(city);
+  chooseUnit();
+  selectLocation();
+}
+
+main2();
+
+
+
+
+
 
 
