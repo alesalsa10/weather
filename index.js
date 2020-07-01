@@ -30,7 +30,7 @@ function req(loc){
       let humidity = data['main']['humidity'];
 
       if (unit === 'metric'){
-        $('.location').find('h2').text(capitalizeString(loc));
+        $('.loc').find('h2').text(capitalizeString(loc));
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
         $('.temp').find('p').text(`Current temperature: ${temp} °C`);
@@ -38,7 +38,7 @@ function req(loc){
         $('.max').find('p').text(`Max. temperature: ${max} °C`);
         $('.humidity').find('p').text(`Humidity: ${humidity} %`);
       } else {
-        $('.location').find('h2').text(capitalizeString(loc));
+        $('.loc').find('h2').text(capitalizeString(loc));
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
         $('.temp').find('p').text(`Current temperature: ${temp} °F`);
@@ -48,7 +48,7 @@ function req(loc){
       }
     })
     .catch(err => {
-      $('.location').find('h2').text('');
+      $('.loc').find('h2').text('');
       $("#icon").attr('src', '');
       $('.desc').find('p').text('');
       $('.temp').find('p').text('');
@@ -110,8 +110,6 @@ async function main2(){
 }
 
 main2();
-
-
 
 
 
