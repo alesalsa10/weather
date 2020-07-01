@@ -28,7 +28,7 @@ body{
     background-color: rgb(200, 223, 243);
 }
 .location{
-    width: 60%;
+    width: 400px;
     height: 20px;
     border-radius: 10px;
     outline: none;
