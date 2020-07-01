@@ -18,7 +18,7 @@ function capitalizeString(str){
 }
 
 function req(loc){
-  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${loc}&units=${unit}&appid=d12803fd0fe5b74db02ff15ad7e5f71d`)
+  fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${loc}&units=${unit}&appid=d12803fd0fe5b74db02ff15ad7e5f71d`)
     .then(response => response.json())
     .then(data => {
       let icon = data['weather'][0]['icon'];
