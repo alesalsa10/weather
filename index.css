@@ -5,4 +5,38 @@
 
 button{
     cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    outline: none;
+}
+
+button:focus{
+    color: red;
+}
+.container{
+    text-align: center;
+    margin: 10% auto;
+    background-color: white;
+    width: 70%;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+body{
+    background-color: rgb(200, 223, 243);
+}
+.location{
+    width: 60%;
+    height: 20px;
+    border-radius: 10px;
+    outline: none;
+    text-indent: 5px;
+}
+h2{
+    text-align: center;
+}
+.data{
+    font-size: 1.1rem;
 }
