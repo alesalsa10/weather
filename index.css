@@ -40,3 +40,8 @@ h2{
 .data{
     font-size: 1.1rem;
 }
+@media (max-width:600px ){
+    .location{
+        width: 90%;
+    }
+}
