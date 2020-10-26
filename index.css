@@ -1,47 +1,101 @@
-.error{
-    color: red;
-    display: none;
-}
-
-button{
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    outline: none;
-}
-
-button:focus{
-    color: red;
-}
-.container{
-    text-align: center;
-    margin: 10% auto;
-    background-color: white;
-    width: 70%;
-    border-radius: 1rem;
-    padding: 1rem;
-}
-
 body{
-    background-color: rgb(200, 223, 243);
+    font-family: "Times New Roman", Times, serif;
 }
-.location{
-    width: 400px;
-    height: 20px;
-    border-radius: 10px;
-    outline: none;
-    text-indent: 5px;
-}
-h2{
+
+header{
     text-align: center;
 }
-.data{
-    font-size: 1.1rem;
+.tempButtons{
+    margin-bottom: 1rem;
 }
-@media (max-width:600px ){
-    .location{
-        width: 90%;
+
+.units{
+    border: none
+}
+
+.currentTemp{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 1rem;
+}
+
+.descriptionSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.description{
+    justify-self: start;
+    color: rgb(0, 132, 255);
+    font-size: larger;
+}
+
+.card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: aqua;
+    padding: 15px;
+    align-items: center;
+    height: 80px;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.moreInfo{
+    display: grid;
+    grid-template-columns: 180px 180px 180px;
+    column-gap: 45px;
+    justify-content: center; 
+}
+
+.moreInfoIcon{
+    justify-self: end;
+}
+
+.units:focus{
+    color: red;
+    outline: none;
+}
+
+.location{
+    width: 300px;
+    height: 25px;
+    margin: 0 auto;
+    border: none; 
+    border:solid 1px #ccc;
+    border-radius: 10px;
+    padding-left: 0.5rem;
+}
+
+.location:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.headings{
+    color: rgb(0, 132, 255);
+    font-size: large;
+    font-weight: 100;
+}
+
+.numbers{
+    font-size: x-large
+}
+
+h1{
+    color: rgb(0, 132, 255);
+}
+
+@media only screen and (max-width: 600px) {
+    .moreInfo{
+        grid-template-columns: 200px;
+        row-gap: 25px;
     }
+  }
+#icon{
+    height: 80px;
 }

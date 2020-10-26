@@ -18,7 +18,7 @@ function capitalizeString(str){
 }
 
 function req(loc){
-  fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${loc}&units=${unit}&appid=d12803fd0fe5b74db02ff15ad7e5f71d`)
+  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${loc}&units=${unit}&appid=d12803fd0fe5b74db02ff15ad7e5f71d`)
     .then(response => response.json())
     .then(data => {
       let icon = data['weather'][0]['icon'];
@@ -28,23 +28,29 @@ function req(loc){
       let min = data['main']['temp_min'];
       let max = data['main']['temp_max'];
       let humidity = data['main']['humidity'];
+      let pressure = data['main']['pressure'];
+      let feelsLike = data['main']['feels_like']
 
       if (unit === 'metric'){
         $('.loc').find('h2').text(capitalizeString(loc));
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
-        $('.temp').find('p').text(`Current temperature: ${temp} °C`);
-        $('.min').find('p').text(`Min. temperature: ${min} °C`);
-        $('.max').find('p').text(`Max. temperature: ${max} °C`);
-        $('.humidity').find('p').text(`Humidity: ${humidity} %`);
+        $('.temp').find('p').text(`${temp}°C`);
+        $('.min').find('p').text(`${min}°C`);
+        $('.max').find('p').text(`${max}°C`);
+        $('.humidity').text(`${humidity}%`);
+        $('.pressure').text(`${pressure}`);
+        $('.feelsLike').text(`${feelsLike}°C`)
       } else {
         $('.loc').find('h2').text(capitalizeString(loc));
         $("#icon").attr('src', iconurl);
         $('.desc').find('p').text(capitalizeString(desc));
-        $('.temp').find('p').text(`Current temperature: ${temp} °F`);
-        $('.min').find('p').text(`Min. temperature: ${min} °F`);
-        $('.max').find('p').text(`Max. temperature: ${max} °F`);
-        $('.humidity').find('p').text(`Humidity: ${humidity} %`);
+        $('.temp').find('p').text(`${temp}°F`);
+        $('.min').find('p').text(`${min}°F`);
+        $('.max').find('p').text(`${max}°F`);
+        $('.humidity').text(`${humidity}%`);
+        $('.pressure').text(`${pressure}`);
+        $('.feelsLike').text(`${feelsLike}°F`)
       }
     })
     .catch(err => {
